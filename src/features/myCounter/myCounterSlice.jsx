@@ -15,8 +15,11 @@ export const myCounterSlice = createSlice({
     resetCount: (state, action) => {
       state.map(x => x.id === action.payload ? x.value = 0 : x);
     },
+    //Immer expects that you will either mutate the existing state,
+    //or construct a new state value yourself and return it, 
+    //but not both in the same function!
     deleteCounter: (state, action) => {
-      state.filter(x => x.id === action.payload);
+      return state.filter(x => x.id != action.payload);
     },
     resetAllCount: (state) => {
       state.map(x => x.value = 0);
